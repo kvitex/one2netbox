@@ -1,0 +1,11 @@
+cluster_name: '<>' # Cluster name in Netbox
+cluster_id: <>              # Cluster id in Netbox
+vm_role_id: <>              # Virtual Machine Role id in Netbox
+one:
+  endpoint: '<OpenNebula RPC2 endpoint>'
+  credentials: '<login>:<password>'
+netbox:
+  url: '<netbox api url>'
+  private_key_file: '<file_with_rsa_key>'
+  token: '<netbox_api_token>'
+  ssl_verify: False
