@@ -102,10 +102,11 @@ if __name__ == "__main__":
     s_vms = []
     for one_vm in one_vms:
         # print(one_vm.NAME, '\t', one_vm.TEMPLATE['TEMPLATE_ID'])
+        # print(one_vm.TEMPLATE.get('VCPU', 1))
         s_vms.append({'name': one_vm.NAME,
                       'role': vm_role_id,
                       'cluster': cluster_id,
-                      'vcpus': one_vm.TEMPLATE['VCPU'],
+                      'vcpus': one_vm.TEMPLATE.get('VCPU', 1),
                       'memory': one_vm.TEMPLATE['MEMORY'],
                       'disk': one_vm_diskspace(one_vm) // 1024,
                       'status': one2netbox_vm_status(one_vm.STATE),
@@ -113,7 +114,7 @@ if __name__ == "__main__":
                                         'account': one_vm.UNAME,
                                         'hostname': one_vm.HISTORY_RECORDS.HISTORY[0].HOSTNAME,
                                         'templatename': template_dict[int(one_vm.TEMPLATE['TEMPLATE_ID'])],
-                                        'hypervisor': one_vm.HISTORY_RECORDS.HISTORY[0].VM_MAD,
+                                        'hypervisor': 'kvm',
                                         'created': str(datetime.datetime.fromtimestamp(one_vms[3].STIME).date())}
                        ,'one_nics': one_vm_nics(one_vm)
                       })
