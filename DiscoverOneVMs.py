@@ -105,7 +105,7 @@ if __name__ == "__main__":
         s_vms.append({'name': one_vm.NAME,
                       'role': vm_role_id,
                       'cluster': cluster_id,
-                      'vcpus': one_vm.TEMPLATE['CPU'],
+                      'vcpus': one_vm.TEMPLATE['VCPU'],
                       'memory': one_vm.TEMPLATE['MEMORY'],
                       'disk': one_vm_diskspace(one_vm) // 1024,
                       'status': one2netbox_vm_status(one_vm.STATE),
