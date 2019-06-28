@@ -113,7 +113,7 @@ if __name__ == "__main__":
                       'custom_fields': {'vmid': str(one_vm.ID),
                                         'account': one_vm.UNAME,
                                         'hostname': one_vm.HISTORY_RECORDS.HISTORY[0].HOSTNAME,
-                                        'templatename': template_dict[int(one_vm.TEMPLATE['TEMPLATE_ID'])],
+                                        'templatename': template_dict.get(int(one_vm.TEMPLATE['TEMPLATE_ID']), ''),
                                         'hypervisor': 'kvm',
                                         'created': str(datetime.datetime.fromtimestamp(one_vms[3].STIME).date())}
                        ,'one_nics': one_vm_nics(one_vm)
