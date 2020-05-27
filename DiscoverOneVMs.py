@@ -113,7 +113,7 @@ if __name__ == "__main__":
                       'custom_fields': {'vmid': str(one_vm.ID),
                                         'account': one_vm.UNAME,
                                         'hostname': one_vm.HISTORY_RECORDS.HISTORY[0].HOSTNAME,
-                                        'templatename': template_dict.get(int(one_vm.TEMPLATE['TEMPLATE_ID']), ''),
+                                        'templatename': template_dict.get(int(one_vm.TEMPLATE.get('TEMPLATE_ID',-1)), ''),
                                         'hypervisor': 'kvm',
                                         'created': str(datetime.datetime.fromtimestamp(one_vms[3].STIME).date())}
                        ,'one_nics': one_vm_nics(one_vm)
@@ -164,10 +164,10 @@ if __name__ == "__main__":
                 nb_new_vm = nb.virtualization.virtual_machines.create(**nb_vm_args)
                 if not nb_new_vm:
                     print('{} Error while Creating in netbox virtual machine name={} id={} nb_vm_args={}'.
-                          format(ctime(), one_vm['name'], one_vm['id'], nb_vm_args))
+                          format(ctime(), one_vm['name'], vmid, nb_vm_args))
             except pynetbox.RequestError as Error:
                 print('{} Exception "{}" while Creating in netbox virtual machine name={} id={} nb_vm_args={}'.
-                      format(ctime(), Error,one_vm['name'], one_vm['id'], nb_vm_args))
+                      format(ctime(), Error,one_vm['name'], vmid, nb_vm_args))
             # print(nb_new_vm)
             if nb_new_vm:
                 no_primary_ip = True
