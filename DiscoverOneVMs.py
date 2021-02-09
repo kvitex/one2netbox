@@ -12,7 +12,12 @@ def ctime():
 
 
 def one2netbox_vm_status(one_state):
-    status_dict = {3: 1}
+    # a mapping of OpenNebula states (left) to netbox ones.
+    # Netbox (right) wanted the text versions from me.
+    # not all states are yet mapped
+    status_dict = {
+            8: "offline",
+            3: "active" }
     return status_dict.get(one_state, 0)
 
 
@@ -123,6 +128,7 @@ if __name__ == "__main__":
     for netbox_vm in netbox_vms:
         netbox_vm_exist = False
         for one_vm in s_vms:
+            # BUG: this breaks if there are also VMs from other systems (not ONE) defined
             if netbox_vm.custom_fields['vmid'] == one_vm['custom_fields']['vmid']:
                 netbox_vm_exist = True
                 break
@@ -185,7 +191,8 @@ if __name__ == "__main__":
                         nb_new_int = nb.virtualization.interfaces.create(**nb_int_args)
                         # print(nb_new_int)
                         if nb_new_int:
-                            nb_ip_args = {'status': 1,
+                            # status is the status of the individual IP address in IPAM, needs to be in text form.
+                            nb_ip_args = {'status': "active",
                                           'address': '{}/{}'.format(this_nic['ip'], this_nic['mask'])
                                           }
                             #print(nb_ip_args)
