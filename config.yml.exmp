@@ -8,4 +8,4 @@ netbox:
   url: '<netbox api url>'
   private_key_file: '<file_with_rsa_key>'
   token: '<netbox_api_token>'
-  ssl_verify: False
+#  ssl_verify: False
