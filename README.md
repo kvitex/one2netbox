@@ -48,6 +48,11 @@ also adjust your cluster settings:
 * add the cluster's id (as per /api/virtualization/clusters/) 
 * add the role id from the "Role creation" step at the start
 
+#### Limitations
+
+There can only be a single OpenNebula cluster configured
+
+
 ### OS configuration
 
 Installing the following dependencies from PyPi should allow the script to run.
