@@ -55,6 +55,12 @@ def one_vm_nics(one_vm):
                 'mask': '24',
                 'mac' : nics['MAC']
                  },]
+    elif isinstance(nics, dict):
+        return [{'name': 'eth{}'.format(nics['NIC_ID']),
+                'ip': nics.get('IP'),
+                'mask': '24',
+                'mac' : nics['MAC']
+                 },]
     return None
 
 if __name__ == "__main__":
